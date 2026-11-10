@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Just a Little Reminder</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  background: radial-gradient(circle at top, #49345f, #21152e 65%, #100d1c);
+  color: #f5eafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 20% 25%, white, transparent),
+    radial-gradient(2px 2px at 75% 18%, white, transparent),
+    radial-gradient(1px 1px at 50% 65%, white, transparent),
+    radial-gradient(2px 2px at 85% 75%, #e8caff, transparent),
+    radial-gradient(1px 1px at 12% 80%, white, transparent);
+  background-size: 220px 220px;
+  opacity: .65;
+}
+
+.moon {
+  position: absolute;
+  top: 9%;
+  right: 12%;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #f6e7bd;
+  box-shadow: 0 0 35px #f6e7bd66;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: 390px;
+  text-align: center;
+  padding: 25px;
+}
+
+h1 {
+  font-size: 29px;
+  font-weight: normal;
+  margin-bottom: 10px;
+  color: #ead9f7;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #c9b3d9;
+  line-height: 1.7;
+}
+
+.envelope {
+  position: relative;
+  width: 155px;
+  height: 105px;
+  margin: 55px auto 35px;
+  background: #b995c8;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 10px 35px #08041188;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 77px solid transparent;
+  border-right: 78px solid transparent;
+  border-top: 65px solid #d7b9e5;
+  transform-origin: top;
+  transition: transform .7s ease;
+  z-index: 3;
+}
+
+.envelope::after {
+  content: "✦";
+  position: absolute;
+  top: 37px;
+  left: 69px;
+  color: #f7dfaa;
+  font-size: 24px;
+  z-index: 4;
+}
+
+.envelope.open::before {
+  transform: rotateX(180deg);
+}
+
+.hint {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #d9c5e9;
+}
+
+.letter {
+  display: none;
+  background: #f4eaf4;
+  color: #493653;
+  padding: 25px;
+  border-radius: 14px;
+  line-height: 1.8;
+  text-align: left;
+  box-shadow: 0 10px 40px #0005;
+  animation: appear .8s ease;
+}
+
+.letter h2 {
+  text-align: center;
+  font-size: 21px;
+  font-weight: normal;
+}
+
+.letter p {
+  font-size: 14px;
+}
+
+.letter.show {
+  display: block;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+button {
+  margin-top: 22px;
+  border: 1px solid #c7a45d;
+  border-radius: 30px;
+  background: transparent;
+  color: #f6e7bd;
+  padding: 12px 22px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  margin-top: 30px;
+  font-size: 11px;
+  color: #bba5cc;
+}
+</style>
+</head>
+
+<body>
+<div class="stars"></div>
+<div class="moon"></div>
+
+<main class="container">
+  <h1>Just a Little Reminder</h1>
+
+  <p class="subtitle" id="intro">
+    A little something for you.<br>
+    Open whenever you feel like it. ♡
+  </p>
+
+  <div class="envelope" id="envelope"
+       onclick="openLetter()"></div>
+
+  <p class="hint" id="hint">✦ TAP THE ENVELOPE ✦</p>
+
+  <section class="letter" id="letter">
+    <h2>Hey, you. ♡</h2>
+
+    <p>
+      Just a little reminder na you don't have to
+      figure everything out today.
+    </p>
+
+    <p>
+      Take your time, okay? Don't be too hard on
+      yourself. It's okay to pause, rest, and take
+      things one step at a time.
+    </p>
+
+    <p>
+      I hope you find little reasons to smile today,
+      even if it's just something silly.
+    </p>
+
+    <p>
+      Sending you a little virtual hug.
+      You got this, at your own pace. ♡
+    </p>
+
+    <p style="text-align:right">
+      Take care, okay? 🌙
+    </p>
+  </section>
+
+  <button id="again" class="hidden"
+          onclick="closeLetter()">
+    Close letter ♡
+  </button>
+
+  <footer>made with a little thought and care ✦</footer>
+</main>
+
+<script>
+function openLetter() {
+  document.getElementById("envelope").classList.add("open");
+
+  setTimeout(() => {
+    document.getElementById("letter").classList.add("show");
+    document.getElementById("intro").classList.add("hidden");
+    document.getElementById("hint").classList.add("hidden");
+    document.getElementById("envelope").classList.add("hidden");
+    document.getElementById("again").classList.remove("hidden");
+  }, 650);
+}
+
+function closeLetter() {
+  document.getElementById("letter").classList.remove("show");
+  document.getElementById("intro").classList.remove("hidden");
+  document.getElementById("hint").classList.remove("hidden");
+  document.getElementById("envelope").classList.remove("hidden", "open");
+  document.getElementById("again").classList.add("hidden");
+}
+</script>
+</body>
+</html>
+
