@@ -8,7 +8,7 @@
 <title>Just a Little Reminder ♡</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500&family=Fredoka:wght@400;500;600&display=swap');
 
 :root {
   --night: #21152e;
@@ -283,6 +283,167 @@ h1 {
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+/* NEW: FUNNY MORNING SURPRISE */
+
+.fun-section {
+  display: none;
+  width: 100%;
+  margin-top: 20px;
+  padding: 21px 17px;
+  background: linear-gradient(145deg, #f1e5f8, #fff5e9);
+  color: #563477;
+  border: 1px solid #d7bde7;
+  border-radius: 8px;
+  box-shadow: 0 12px 30px #08041155;
+  text-align: center;
+  animation: reveal .8s ease both;
+}
+
+.fun-section.show {
+  display: block;
+}
+
+.fun-kicker {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  color: #9a77ad;
+}
+
+.fun-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 23px;
+  line-height: 1.25;
+  margin: 10px 0;
+  color: #563477;
+}
+
+.fun-intro {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #806b8e;
+  margin: 10px 0 17px;
+}
+
+.news-card {
+  padding: 15px 12px;
+  margin: 14px 0;
+  border: 1px dashed #bd9bd1;
+  border-radius: 12px;
+  background: #fffaf3;
+}
+
+.news-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #a27ab6;
+  margin-bottom: 8px;
+}
+
+.news-headline {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 19px;
+  line-height: 1.35;
+  color: #68448a;
+}
+
+.fun-button {
+  width: 100%;
+  padding: 12px 13px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 30px;
+  background: #79529a;
+  color: #fff9ff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .7px;
+  cursor: pointer;
+  transition: transform .2s, background .2s;
+}
+
+.fun-button:active {
+  transform: scale(.97);
+}
+
+.fun-button:hover {
+  background: #654180;
+}
+
+.random-message {
+  display: none;
+  padding: 15px 12px;
+  margin-top: 13px;
+  border-radius: 12px;
+  background: #fffaf3;
+  color: #684b79;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.random-message.show {
+  display: block;
+  animation: reveal .4s ease both;
+}
+
+.certificate-button {
+  background: #b28a48;
+  margin-top: 13px;
+}
+
+.certificate-button:hover {
+  background: #98733b;
+}
+
+.certificate {
+  display: none;
+  padding: 16px 10px;
+  margin-top: 13px;
+  border: 2px solid #d5b56f;
+  border-radius: 12px;
+  background: #fffaf0;
+  animation: reveal .5s ease both;
+}
+
+.certificate.show {
+  display: block;
+}
+
+.certificate-icon {
+  font-size: 29px;
+  margin-bottom: 5px;
+}
+
+.certificate-label {
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: #a17b3d;
+}
+
+.certificate h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 22px;
+  line-height: 1.2;
+  margin: 8px 0;
+  color: #8d6734;
+}
+
+.certificate p {
+  font-size: 11px;
+  line-height: 1.7;
+  color: #806b65;
+  margin: 8px 0;
+}
+
+.fun-footnote {
+  margin-top: 15px;
+  font-size: 9px;
+  line-height: 1.6;
+  color: #9a85a5;
+}
+
 .action {
   margin-top: 24px;
   padding: 12px 24px;
@@ -315,6 +476,7 @@ footer {
 @media (max-width: 380px) {
   .container { padding-top: 65px; }
   .letter { padding: 22px 19px; }
+  .fun-section { padding: 18px 13px; }
 }
 </style>
 </head>
@@ -380,6 +542,54 @@ footer {
     </p>
   </section>
 
+  <!-- OPTIONAL FUN SECTION -->
+  <section class="fun-section" id="funSection">
+
+    <div class="fun-kicker">✦ A VERY IMPORTANT ANNOUNCEMENT ✦</div>
+
+    <div class="fun-title">A Little Nonsense for Your Day</div>
+
+    <p class="fun-intro">
+      Because not everything needs to be serious.
+      Here's a tiny collection of completely unnecessary news.
+    </p>
+
+    <div class="news-card">
+      <div class="news-label">🚨 BREAKING NEWS 🚨</div>
+      <div class="news-headline">
+        LOCAL GIRL WAKES UP.<br>
+        WORLD STILL NOT READY.
+      </div>
+    </div>
+
+    <button class="fun-button" onclick="newMessage()">
+      GIVE ME MY DAILY NONSENSE ✦
+    </button>
+
+    <div class="random-message" id="randomMessage"></div>
+
+    <button class="fun-button certificate-button" onclick="showCertificate()">
+      CLAIM YOUR OFFICIAL TITLE 🏆
+    </button>
+
+    <div class="certificate" id="certificate">
+      <div class="certificate-icon">👑</div>
+      <div class="certificate-label">OFFICIAL CERTIFICATION</div>
+      <h3>CERTIFIED HUMAN<br>OF THE DAY</h3>
+      <p>
+        For showing up, being yourself, and making it
+        through another day. No additional requirements.
+      </p>
+      <div>✦ 🌷 ✦</div>
+    </div>
+
+    <div class="fun-footnote">
+      This announcement was approved by absolutely nobody.
+      <br>Have a nice day. Or at least a decent one. ♡
+    </div>
+
+  </section>
+
   <button class="action hidden" id="again"
           onclick="closeLetter()">
     CLOSE LETTER ♡
@@ -420,20 +630,60 @@ function openLetter() {
 
   setTimeout(() => {
     document.getElementById("welcome").classList.add("hidden");
-    document.getElementById("letter").classList.add("show");
     document.getElementById("letter").style.display = "block";
+    document.getElementById("funSection").classList.add("show");
     document.getElementById("again").classList.remove("hidden");
   }, 950);
 }
 
 function closeLetter() {
   document.getElementById("letter").style.display = "none";
-  document.getElementById("letter").classList.remove("show");
+  document.getElementById("funSection").classList.remove("show");
+  document.getElementById("randomMessage").classList.remove("show");
+  document.getElementById("certificate").classList.remove("show");
   document.getElementById("welcome").classList.remove("hidden");
   document.getElementById("again").classList.add("hidden");
 
   const envelope = document.getElementById("envelope");
   envelope.classList.remove("open");
+}
+
+const messages = [
+  "Today's agenda: drink warm water, mind your business, and let the universe figure itself out. Very productive.",
+  "Scientists confirm that doing absolutely nothing for a while is sometimes a perfectly reasonable plan. More research pending.",
+  "Breaking: Someone is being adorable again. Authorities have no explanation.",
+  "Your daily allowance of overthinking has been temporarily suspended. Please try again never. 🤨",
+  "No major life decisions before you've had a moment to exist peacefully. This is an official recommendation from nobody.",
+  "Congratulations! You made it to another morning. The achievement committee (me) is impressed.",
+  "Today's forecast: 70% chance of getting things done, 30% chance of staring into space and forgetting why. 🌤️",
+  "Please enjoy your warm water. The world can wait. HAHAHA.",
+  "A gentle reminder that you are allowed to have a slow day. Even phones need charging, you know.",
+  "Today's plot twist: everything might turn out better than expected. We love character development."
+];
+
+let lastMessage = -1;
+
+function newMessage() {
+  const box = document.getElementById("randomMessage");
+
+  let randomIndex;
+
+  do {
+    randomIndex = Math.floor(Math.random() * messages.length);
+  } while (randomIndex === lastMessage && messages.length > 1);
+
+  lastMessage = randomIndex;
+
+  box.textContent = messages[randomIndex];
+  box.classList.remove("show");
+
+  void box.offsetWidth;
+
+  box.classList.add("show");
+}
+
+function showCertificate() {
+  document.getElementById("certificate").classList.add("show");
 }
 </script>
 
