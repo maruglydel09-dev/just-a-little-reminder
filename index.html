@@ -4,192 +4,352 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Just a Little Reminder</title>
+<meta name="theme-color" content="#21152e">
+<title>Just a Little Reminder ♡</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500&display=swap');
+
+:root {
+  --night: #21152e;
+  --purple: #563477;
+  --lavender: #e8ddf5;
+  --pink: #d85b9b;
+  --gold: #c7a45d;
+  --paper: #f5ecdf;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  min-height: 100vh;
-  font-family: Georgia, serif;
-  background: radial-gradient(circle at top, #49345f, #21152e 65%, #100d1c);
-  color: #f5eafa;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  min-height: 100svh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at 50% 0%, #563477 0%, transparent 55%),
+    linear-gradient(160deg, #30203f, #171020 75%);
+  color: var(--lavender);
+  font-family: 'DM Sans', sans-serif;
 }
 
-.stars {
+.sky {
   position: fixed;
   inset: 0;
+  overflow: hidden;
   pointer-events: none;
-  background-image:
-    radial-gradient(2px 2px at 20% 25%, white, transparent),
-    radial-gradient(2px 2px at 75% 18%, white, transparent),
-    radial-gradient(1px 1px at 50% 65%, white, transparent),
-    radial-gradient(2px 2px at 85% 75%, #e8caff, transparent),
-    radial-gradient(1px 1px at 12% 80%, white, transparent);
-  background-size: 220px 220px;
-  opacity: .65;
+  z-index: 0;
 }
 
 .moon {
   position: absolute;
   top: 9%;
-  right: 12%;
-  width: 65px;
-  height: 65px;
+  right: 11%;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
-  background: #f6e7bd;
-  box-shadow: 0 0 35px #f6e7bd66;
+  background: #f5e9c9;
+  box-shadow:
+    0 0 20px #f5e9c988,
+    0 0 55px #f5e9c944;
+  animation: moonGlow 4s ease-in-out infinite alternate;
+}
+
+.moon::after {
+  content: "";
+  position: absolute;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: #49315c;
+  top: -12px;
+  left: 20px;
+}
+
+@keyframes moonGlow {
+  to { box-shadow: 0 0 40px #f5e9c9aa, 0 0 80px #f5e9c955; }
+}
+
+.star {
+  position: absolute;
+  color: #fff3d0;
+  animation: twinkle var(--speed) ease-in-out infinite alternate;
+  opacity: .5;
+}
+
+@keyframes twinkle {
+  from { opacity: .2; transform: scale(.7); }
+  to { opacity: 1; transform: scale(1.25); }
+}
+
+.firefly {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #f7e2a5;
+  box-shadow: 0 0 12px 4px #f7e2a566;
+  animation: drift var(--duration) ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+  from { transform: translate(0, 0); opacity: .2; }
+  to { transform: translate(25px, -35px); opacity: 1; }
 }
 
 .container {
   position: relative;
   z-index: 1;
-  width: 90%;
-  max-width: 390px;
+  width: min(90%, 430px);
+  min-height: 100svh;
+  margin: auto;
+  padding: 85px 0 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 25px;
+}
+
+.eyebrow {
+  color: #d7c0e8;
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }
 
 h1 {
-  font-size: 29px;
-  font-weight: normal;
-  margin-bottom: 10px;
-  color: #ead9f7;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(35px, 9vw, 46px);
+  font-weight: 500;
+  margin: 13px 0 8px;
+  color: #f4e9f8;
+  text-shadow: 0 0 25px #d5b5ef55;
 }
 
 .subtitle {
-  font-size: 14px;
-  color: #c9b3d9;
-  line-height: 1.7;
+  max-width: 300px;
+  color: #d0bedc;
+  font-size: 13px;
+  line-height: 1.9;
+  margin: 0 auto;
+}
+
+.envelope-wrap {
+  margin: 65px 0 30px;
+  perspective: 900px;
 }
 
 .envelope {
   position: relative;
-  width: 155px;
-  height: 105px;
-  margin: 55px auto 35px;
-  background: #b995c8;
+  width: 190px;
+  height: 125px;
+  background: #ad88bf;
   border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0 10px 35px #08041188;
+  box-shadow: 0 15px 35px #09051188;
+  transition: transform .4s ease;
 }
 
-.envelope::before {
-  content: "";
+.envelope:hover {
+  transform: translateY(-6px);
+}
+
+.env-back {
   position: absolute;
-  top: 0;
-  left: 0;
-  border-left: 77px solid transparent;
-  border-right: 78px solid transparent;
-  border-top: 65px solid #d7b9e5;
-  transform-origin: top;
-  transition: transform .7s ease;
+  inset: 0;
+  background: #a17ab6;
+  border-radius: 5px;
+}
+
+.env-paper {
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+  width: 160px;
+  height: 90px;
+  background: #f5ecdf;
+  border-radius: 3px;
+  transition: transform .8s ease;
+}
+
+.env-front {
+  position: absolute;
+  inset: 0;
+  background: #b995c8;
+  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
   z-index: 3;
+  border-radius: 5px;
 }
 
-.envelope::after {
-  content: "✦";
+.env-flap {
   position: absolute;
-  top: 37px;
-  left: 69px;
-  color: #f7dfaa;
-  font-size: 24px;
+  inset: 0;
+  background: #d4b5e1;
+  clip-path: polygon(0 0, 100% 0, 50% 63%);
+  transform-origin: top;
+  transition: transform .8s ease;
   z-index: 4;
 }
 
-.envelope.open::before {
+.seal {
+  position: absolute;
+  top: 49px;
+  left: 77px;
+  z-index: 5;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle, #e4c783, #a87d39);
+  color: #fff4d6;
+  font-size: 18px;
+  box-shadow: 0 0 16px #e9c77866;
+  transition: opacity .3s;
+}
+
+.envelope.open .env-flap {
   transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope.open .env-paper {
+  transform: translateY(-75px);
+}
+
+.envelope.open .seal {
+  opacity: 0;
 }
 
 .hint {
-  font-size: 12px;
-  letter-spacing: 2px;
-  color: #d9c5e9;
+  color: #d5c0e4;
+  font-size: 10px;
+  letter-spacing: 3px;
+  animation: hintPulse 2s infinite;
+}
+
+@keyframes hintPulse {
+  50% { opacity: .5; }
 }
 
 .letter {
   display: none;
-  background: #f4eaf4;
+  width: 100%;
+  background:
+    radial-gradient(circle at top right, #fff8e6, transparent 50%),
+    var(--paper);
   color: #493653;
-  padding: 25px;
-  border-radius: 14px;
-  line-height: 1.8;
+  padding: 27px 25px;
+  border-radius: 5px;
   text-align: left;
-  box-shadow: 0 10px 40px #0005;
-  animation: appear .8s ease;
+  box-shadow: 0 15px 45px #08041188;
+  animation: reveal .9s ease both;
+  position: relative;
+}
+
+.letter::before {
+  content: "✦";
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  color: #c7a45d;
 }
 
 .letter h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 29px;
   text-align: center;
-  font-size: 21px;
-  font-weight: normal;
+  font-weight: 500;
+  margin: 5px 0 20px;
 }
 
 .letter p {
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 1.9;
+  margin: 13px 0;
 }
 
-.letter.show {
-  display: block;
+.letter .signature {
+  text-align: right;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  color: #77578b;
 }
 
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(25px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-button {
-  margin-top: 22px;
-  border: 1px solid #c7a45d;
+.action {
+  margin-top: 24px;
+  padding: 12px 24px;
+  border: 1px solid var(--gold);
   border-radius: 30px;
-  background: transparent;
-  color: #f6e7bd;
-  padding: 12px 22px;
+  background: #ffffff08;
+  color: #f4e5c4;
   font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 1px;
   cursor: pointer;
+  transition: background .3s;
+}
+
+.action:hover {
+  background: #c7a45d22;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 footer {
-  margin-top: 30px;
-  font-size: 11px;
-  color: #bba5cc;
+  margin-top: 45px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #bca6cb;
+}
+
+@media (max-width: 380px) {
+  .container { padding-top: 65px; }
+  .letter { padding: 22px 19px; }
 }
 </style>
 </head>
 
 <body>
-<div class="stars"></div>
-<div class="moon"></div>
+
+<div class="sky" id="sky">
+  <div class="moon"></div>
+</div>
 
 <main class="container">
-  <h1>Just a Little Reminder</h1>
 
-  <p class="subtitle" id="intro">
-    A little something for you.<br>
-    Open whenever you feel like it. ♡
-  </p>
+  <div id="welcome">
+    <div class="eyebrow">A LITTLE CORNER FOR YOU</div>
 
-  <div class="envelope" id="envelope"
-       onclick="openLetter()"></div>
+    <h1>Just a Little Reminder</h1>
 
-  <p class="hint" id="hint">✦ TAP THE ENVELOPE ✦</p>
+    <p class="subtitle">
+      A little something for you.<br>
+      Open whenever you feel like it. ♡
+    </p>
+
+    <div class="envelope-wrap">
+      <div class="envelope" id="envelope"
+           onclick="openLetter()">
+        <div class="env-back"></div>
+        <div class="env-paper"></div>
+        <div class="env-front"></div>
+        <div class="env-flap"></div>
+        <div class="seal">✦</div>
+      </div>
+    </div>
+
+    <div class="hint">✦ TAP THE ENVELOPE ✦</div>
+  </div>
 
   <section class="letter" id="letter">
     <h2>Hey, you. ♡</h2>
@@ -215,40 +375,67 @@ footer {
       You got this, at your own pace. ♡
     </p>
 
-    <p style="text-align:right">
+    <p class="signature">
       Take care, okay? 🌙
     </p>
   </section>
 
-  <button id="again" class="hidden"
+  <button class="action hidden" id="again"
           onclick="closeLetter()">
-    Close letter ♡
+    CLOSE LETTER ♡
   </button>
 
-  <footer>made with a little thought and care ✦</footer>
+  <footer>MADE WITH A LITTLE THOUGHT AND CARE ✦</footer>
+
 </main>
 
 <script>
+const sky = document.getElementById("sky");
+
+for (let i = 0; i < 45; i++) {
+  const star = document.createElement("span");
+  star.className = "star";
+  star.textContent = Math.random() > .5 ? "✦" : "·";
+  star.style.left = Math.random() * 100 + "%";
+  star.style.top = Math.random() * 100 + "%";
+  star.style.setProperty("--speed", (1.5 + Math.random() * 3) + "s");
+  star.style.fontSize = (7 + Math.random() * 12) + "px";
+  sky.appendChild(star);
+}
+
+for (let i = 0; i < 12; i++) {
+  const light = document.createElement("span");
+  light.className = "firefly";
+  light.style.left = Math.random() * 100 + "%";
+  light.style.top = Math.random() * 100 + "%";
+  light.style.setProperty("--duration", (3 + Math.random() * 5) + "s");
+  light.style.animationDelay = Math.random() * 4 + "s";
+  sky.appendChild(light);
+}
+
 function openLetter() {
-  document.getElementById("envelope").classList.add("open");
+  const envelope = document.getElementById("envelope");
+
+  envelope.classList.add("open");
 
   setTimeout(() => {
+    document.getElementById("welcome").classList.add("hidden");
     document.getElementById("letter").classList.add("show");
-    document.getElementById("intro").classList.add("hidden");
-    document.getElementById("hint").classList.add("hidden");
-    document.getElementById("envelope").classList.add("hidden");
+    document.getElementById("letter").style.display = "block";
     document.getElementById("again").classList.remove("hidden");
-  }, 650);
+  }, 950);
 }
 
 function closeLetter() {
+  document.getElementById("letter").style.display = "none";
   document.getElementById("letter").classList.remove("show");
-  document.getElementById("intro").classList.remove("hidden");
-  document.getElementById("hint").classList.remove("hidden");
-  document.getElementById("envelope").classList.remove("hidden", "open");
+  document.getElementById("welcome").classList.remove("hidden");
   document.getElementById("again").classList.add("hidden");
+
+  const envelope = document.getElementById("envelope");
+  envelope.classList.remove("open");
 }
 </script>
+
 </body>
 </html>
-
